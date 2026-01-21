@@ -1,0 +1,65 @@
+gtin,section,field,lang,index,value
+05711953041914,identity,gtin,,,05711953041914
+05711953041914,identity,brand,,,Yoggi®
+05711953041914,identity,supplier_assigned_id,,,
+05711953041914,identity,trade_channel,,,
+05711953041914,identity,information_provider.gln,,,
+05711953041914,identity,information_provider.name,,,
+05711953041914,identity,information_provider.address,,,
+05711953041914,identity,manufacturer.gln,,,
+05711953041914,identity,manufacturer.name,,,
+05711953041914,classification,gpc_code,,,10000191
+05711953041914,classification,gpc_name,,,Mjölkbaserade drycker - drickfärdiga (färskvaror)
+05711953041914,market,target_country_code,,,752
+05711953041914,market,country_of_origin,,,528
+05711953041914,vat,type,,,VAT
+05711953041914,vat,rate,,,12
+05711953041914,trade_unit,is_consumer_unit,,,True
+05711953041914,trade_unit,is_base_unit,,,True
+05711953041914,trade_unit,is_variable_unit,,,False
+05711953041914,trade_unit,is_orderable_unit,,,False
+05711953041914,trade_unit,is_invoice_unit,,,False
+05711953041914,size,descriptive,,,350 ml
+05711953041914,size,net_content,,,350
+05711953041914,measurements,width_mm,,,65
+05711953041914,measurements,height_mm,,,149
+05711953041914,measurements,depth_mm,,,65
+05711953041914,measurements,gross_weight_g,,,389
+05711953041914,measurements,net_weight_g,,,
+05711953041914,alcohol,abv_percent,,,
+05711953041914,healthcare,prescription_type,,,
+05711953041914,healthcare,is_otc,,,False
+05711953041914,consumer_guidance,minimum_age,,,
+05711953041914,packaging,type,,,BO
+05711953041914,packaging,is_returnable,,,False
+05711953041914,packaging,deposit_id,,,
+05711953041914,safety,is_dangerous_substance,,,False
+05711953041914,sales_restrictions,condition_code,,,
+05711953041914,sales_restrictions,restricted,,,False
+05711953041914,naming,description_short,sv,0,Yalla Drickyoghurt mango/banan/apelsin
+05711953041914,naming,functional_name,sv,0,Drickyoghurt
+05711953041914,variant,supplier_assigned_id,,,
+05711953041914,variant,color,,,
+05711953041914,variant,size,,,350 ml
+05711953041914,variant,net_content,,,350
+05711953041914,allergens,type,,0,AM
+05711953041914,allergens,containment,,0,CONTAINS
+05711953041914,ingredients.food,text,sv,0,"MJÖLK, socker (3,7%), mango (3,1%), banan (2%), apelsin (1,2%), majsstärkelse, citronjuice, naturlig arom, yoghurtkultur."
+05711953041914,consumer_instructions.recycling,text,sv,0,Riv av etiketten från flaskan för att möjliggöra återvinning. Sortera allt som plast.
+05711953041914,marketing.long,text,sv,0,"Yalla Drickyoghurt Mango & Banan & Apelsin släcker törsten och mättar. Yalla drickyoghurt är rik på frukt, inga färgämnen, inga konserveringsmedel. Snabbt skruvlock, drick i farten."
+05711953041914,marketing.keywords,text,sv,0,"drickyoghurt, mellanmål, mellis, mango, banan, apelsin"
+05711953041914,media,type,,0,PRODUCT_IMAGE
+05711953041914,media,uri,,0,https://images.arla.com/filename/05711953041914_C1C1.PNG
+05711953041914,media,primary,,0,True
+05711953041914,media,type,,1,PRODUCT_IMAGE
+05711953041914,media,uri,,1,https://images.arla.com/filename/05711953041914_C1C1.JPG
+05711953041914,media,primary,,1,False
+05711953041914,media,type,,2,PRODUCT_IMAGE
+05711953041914,media,uri,,2,https://images.arla.com/filename/05711953041914_C1C1.TIF
+05711953041914,media,primary,,2,False
+05711953041914,media,type,,3,PLANOGRAM
+05711953041914,media,uri,,3,https://images.arla.com/filename/05711953041914.1.PNG
+05711953041914,media,primary,,3,False
+05711953041914,media,type,,4,PLANOGRAM
+05711953041914,media,uri,,4,https://images.arla.com/filename/05711953041914.3.PNG
+05711953041914,media,primary,,4,False
