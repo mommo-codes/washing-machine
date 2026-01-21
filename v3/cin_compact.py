@@ -6,11 +6,7 @@ SNAPSHOT_PATH = Path("cin_snapshot.json")
 OUT_PATH = Path("cin_compact.json")
 
 
-# -------------------------------------------------
-# Tree helpers (SAFE)
-# -------------------------------------------------
-
-
+# helpers
 def find_all(node, tag_endswith):
     if not node:
         return []
@@ -35,30 +31,15 @@ def attr(node, key):
     return node.get("attributes", {}).get(key) if node else None
 
 
-# -------------------------------------------------
-# Load snapshot
-# -------------------------------------------------
-
 with SNAPSHOT_PATH.open() as f:
     root = json.load(f)
 
-
-# -------------------------------------------------
-# Variant helpers
-# -------------------------------------------------
 
 colour_node = find_first(root, "colour")
 size_node = find_first(root, "descriptiveSizeDimension")
 
 
-# -------------------------------------------------
-# Build compact object
-# -------------------------------------------------
-
 compact = {
-    # -------------------------------------------------
-    # Identity
-    # -------------------------------------------------
     "identity": {
         "gtin": text(find_first(root, "gtin")),
         "brand": text(find_first(root, "brandName")),
@@ -78,9 +59,6 @@ compact = {
             "name": text(find_first(root, "manufacturerOfTradeItem/partyName")),
         },
     },
-    # -------------------------------------------------
-    # Classification & market
-    # -------------------------------------------------
     "classification": {
         "gpc_code": text(find_first(root, "gpcCategoryCode")),
         "gpc_name": text(find_first(root, "gpcCategoryName")),
@@ -89,9 +67,6 @@ compact = {
         "target_country_code": text(find_first(root, "targetMarketCountryCode")),
         "country_of_origin": text(find_first(root, "countryCode")),
     },
-    # -------------------------------------------------
-    # Variant (FACTS ONLY)
-    # -------------------------------------------------
     "variant": {
         "supplier_assigned_id": text(
             find_first(root, "additionalTradeItemIdentification")
@@ -107,9 +82,6 @@ compact = {
         "size": text(size_node),
         "net_content": text(find_first(root, "netContent")),
     },
-    # -------------------------------------------------
-    # Naming
-    # -------------------------------------------------
     "naming": {
         "description_short": [
             {
@@ -133,16 +105,10 @@ compact = {
             for n in find_all(root, "regulatedProductName")
         ],
     },
-    # -------------------------------------------------
-    # VAT / Tax
-    # -------------------------------------------------
     "vat": {
         "type": text(find_first(root, "dutyFeeTaxTypeCode")),
         "rate": text(find_first(root, "dutyFeeTaxRate")),
     },
-    # -------------------------------------------------
-    # Trade unit flags
-    # -------------------------------------------------
     "trade_unit": {
         "is_consumer_unit": text(find_first(root, "isTradeItemAConsumerUnit"))
         == "true",
@@ -153,9 +119,6 @@ compact = {
         == "true",
         "is_invoice_unit": text(find_first(root, "isTradeItemAnInvoiceUnit")) == "true",
     },
-    # -------------------------------------------------
-    # Size & measurements
-    # -------------------------------------------------
     "size": {
         "descriptive": text(find_first(root, "descriptiveSizeDimension")),
         "net_content": text(find_first(root, "netContent")),
@@ -167,9 +130,6 @@ compact = {
         "gross_weight_g": text(find_first(root, "grossWeight")),
         "net_weight_g": text(find_first(root, "netWeight")),
     },
-    # -------------------------------------------------
-    # Alcohol / OTC / Healthcare
-    # -------------------------------------------------
     "alcohol": {
         "abv_percent": text(find_first(root, "percentageOfAlcoholByVolume")),
     },
@@ -188,9 +148,6 @@ compact = {
             None,
         )
     },
-    # -------------------------------------------------
-    # Allergens
-    # -------------------------------------------------
     "allergens": [
         {
             "type": text(find_first(a, "allergenTypeCode")),
@@ -198,9 +155,6 @@ compact = {
         }
         for a in find_all(root, "allergen")
     ],
-    # -------------------------------------------------
-    # Ingredients
-    # -------------------------------------------------
     "ingredients": {
         "food": [
             {
@@ -217,9 +171,6 @@ compact = {
             for n in find_all(root, "nonfoodIngredientStatement")
         ],
     },
-    # -------------------------------------------------
-    # Consumer instructions
-    # -------------------------------------------------
     "consumer_instructions": {
         "usage": [
             {"lang": attr(n, "languageCode"), "text": text(n)}
@@ -234,9 +185,6 @@ compact = {
             for n in find_all(root, "consumerRecyclingInstructions")
         ],
     },
-    # -------------------------------------------------
-    # Marketing
-    # -------------------------------------------------
     "marketing": {
         "long": [
             {"lang": attr(n, "languageCode"), "text": text(n)}
@@ -251,32 +199,20 @@ compact = {
             for n in find_all(root, "tradeItemKeyWords")
         ],
     },
-    # -------------------------------------------------
-    # Packaging
-    # -------------------------------------------------
     "packaging": {
         "type": text(find_first(root, "packagingTypeCode")),
         "is_returnable": text(find_first(root, "isPackagingMarkedReturnable"))
         == "true",
         "deposit_id": text(find_first(root, "returnablePackageDepositIdentification")),
     },
-    # -------------------------------------------------
-    # Safety
-    # -------------------------------------------------
     "safety": {
         "is_dangerous_substance": text(find_first(root, "isDangerousSubstance"))
         == "TRUE",
     },
-    # -------------------------------------------------
-    # Sales restrictions (LEGAL)
-    # -------------------------------------------------
     "sales_restrictions": {
         "condition_code": text(find_first(root, "consumerSalesConditionCode")),
         "restricted": bool(find_first(root, "consumerSalesConditionCode")),
     },
-    # -------------------------------------------------
-    # Media
-    # -------------------------------------------------
     "media": [
         {
             "type": text(find_first(f, "referencedFileTypeCode")),
@@ -286,11 +222,6 @@ compact = {
         for f in find_all(root, "referencedFileHeader")
     ],
 }
-
-
-# -------------------------------------------------
-# Write output
-# -------------------------------------------------
 
 with OUT_PATH.open("w", encoding="utf-8") as f:
     json.dump(compact, f, ensure_ascii=False, indent=2)
